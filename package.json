@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@chainlink/contracts": "^0.6.1",
+    "@rainbow-me/rainbowkit": "^0.12.7",
+    "ethers": "^5.7.2",
+    "next": "latest",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "wagmi": "^0.12.10"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+    "autoprefixer": "^10.4.14",
+    "dotenv": "^16.0.3",
+    "hardhat": "^2.13.0",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.1"
+  }
+}
