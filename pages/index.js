@@ -12,7 +12,7 @@ export default function Home() {
   const account = useAccount({
     onConnect({ address, connector, isReconnected }) {
       console.log('Connected', { address, connector, isReconnected })
-      Router.push('/createGame')    
+      Router.push('/Hub')    
     }
   })
 

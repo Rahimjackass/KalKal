@@ -3,7 +3,16 @@ require('dotenv').config();
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.17",
+  solidity: {
+    compilers:[
+      {
+        version: "0.8.17",
+      },
+      {
+        version: "0.8.6",
+      }
+    ],
+  },
   networks: {
     localhost: {
       url: 'http://localhost:8545',
@@ -14,8 +23,13 @@ module.exports = {
         mnemonic: process.env.MNEMONIC,
         path: "m/44'/60'/0'/0",
         initialIndex: 0,
-        count: 3
+        count: 6
       }
+    }
+  },
+  etherscan: {
+    apiKey: {
+      polygonMumbai: process.env.POLYGONSCAN_API_KEY,
     }
   }
 };
