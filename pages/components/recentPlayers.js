@@ -130,22 +130,20 @@ export default function RecentPlayers() {
                     <h1 className="text-xl font-bold"> Registered Players</h1>
                 </header>
                 <div className='flex my-2 text-white'>
-                    <p className="w-1/6 text-center text-sm">Name</p>
-                    <p className='w-1/6 text-center text-sm'>Choice</p>
-                    <p className="w-1/6 text-center text-sm">Open</p>
-                    <p className="w-1/6 text-center text-sm">Close</p>
-                    <p className="w-1/6 text-center text-sm">Range</p>
-                    <p className="w-1/6 text-center text-sm">Winner</p>
+                    <p className="w-1/5 text-center text-sm">Name</p>
+                    <p className='w-1/5 text-center text-sm'>Choice</p>
+                    <p className="w-1/5 text-center text-sm">Open</p>
+                    <p className="w-1/5 text-center text-sm">Close</p>
+                    <p className="w-1/5 text-center text-sm">Range</p>
                 </div>
                 {
                     response.map((x) => (
-                        <div className='flex py-2 my-1 mx-1 bg-white border rounded-lg hover:bg-blue-300' key={x.name}>
-                            <p className='w-1/6 text-center text-xs'><b>{x.name}</b></p>     
-                            <p className='w-1/6 text-center text-xs'><b>{x.choice}</b></p>      
-                            <p className='w-1/6 text-center text-xs'>{x.open == 0 ? "-" : `${x.open}`}</p>                  
-                            <p className='w-1/6 text-center text-xs'>{x.close == 0 ? "-" : `${x.close}`}</p>                  
-                            <p className='w-1/6 text-center text-xs'>{x.range == 0 ? "-" : `${x.range}`}</p>
-                            <p className='w-1/6 text-center text-xs'>{x.winner == false ? "-" : "Hoora!"}</p>                                    
+                        <div className={`flex py-2 my-1 mx-1 ${x.winner == true ? 'bg-green-400' : 'bg-blue-100 hover:bg-blue-300'} border rounded-lg`} key={x.name}>
+                            <p className='w-1/5 text-center text-xs'><b>{x.name}</b></p>     
+                            <p className='w-1/5 text-center text-xs'><b>{x.choice}</b></p>      
+                            <p className='w-1/5 text-center text-xs'>{x.open == 0 ? "-" : `${x.open}`}</p>                  
+                            <p className='w-1/5 text-center text-xs'>{x.close == 0 ? "-" : `${x.close}`}</p>                  
+                            <p className='w-1/5 text-center text-xs'>{x.range == 0 ? "-" : `${x.range}`}</p>
                         </div>
                     ))
                 }

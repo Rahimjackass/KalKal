@@ -17,11 +17,17 @@ export default function Game () {
 
     const { contract } = router.query;
 
+    const [ recentOption, setRecentOption ] = useState(null);
+
     const [ choice, setChoice ] = useState(null);
     const [ name, setName ] = useState(null)
 
     const [ paused, setPaused ] = useState(null)
     const [ winnerName, setWinnerName ] = useState(null);
+
+    const handleButtonClick = (option) => {
+        setRecentOption(option);
+    };
 
     useContractRead({
         address: contract,
@@ -153,10 +159,6 @@ export default function Game () {
                         <h2 className='pr-1'>Game Status:</h2>
                         {paused ? <p className="text-red-500">  Not started/Finished</p> : <p className="text-green-600">Ongoing</p>}
                     </div>
-                    {/* <div className="flex">
-                        <h2 className='pr-1'>Winner name:</h2>
-                        {winnerName ? <p className="text-blue-500">{winnerName}</p> : <p className="text-green-600">Not specified</p>}
-                    </div> */}
                     <ConnectButton></ConnectButton>
                 </div>
             </header>
@@ -188,12 +190,12 @@ export default function Game () {
                         </div>
 
                         <div className="flex flex-wrap w-full h-3/4">
-                            <button className="w-28 mx-1 h-1/4 border rounded-3xl bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline" onClick={() => setChoice(0)}>BTC</button>
-                            <button className="w-28 mx-1 h-1/4 border rounded-3xl bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline" onClick={() => setChoice(1)}>ETH</button>
-                            <button className="w-28 mx-1 h-1/4 border rounded-3xl bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline" onClick={() => setChoice(2)}>LINK</button>
-                            <button className="w-28 mx-1 h-1/4 border rounded-3xl bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline" onClick={() => setChoice(3)}>MATIC</button>
-                            <button className="w-28 mx-1 h-1/4 border rounded-3xl bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline" onClick={() => setChoice(4)}>SAND</button>
-                            <button className="w-28 mx-1 h-1/4 border rounded-3xl bg-blue-500 hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline" onClick={() => setChoice(5)}>SOL</button>
+                            <button className={`w-28 mx-1 h-1/4 border rounded-3xl ${choice === 0 ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(0)}>BTC</button>
+                            <button className={`w-28 mx-1 h-1/4 border rounded-3xl ${choice === 1 ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(1)}>ETH</button>
+                            <button className={`w-28 mx-1 h-1/4 border rounded-3xl ${choice === 2 ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(2)}>LINK</button>
+                            <button className={`w-28 mx-1 h-1/4 border rounded-3xl ${choice === 3 ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(3)}>MATIC</button>
+                            <button className={`w-28 mx-1 h-1/4 border rounded-3xl ${choice === 4 ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(4)}>SAND</button>
+                            <button className={`w-28 mx-1 h-1/4 border rounded-3xl ${choice === 5 ? 'bg-blue-700' : 'bg-blue-500'} hover:bg-blue-700 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(5)}>SOL</button>
                         </div> 
                         <div className='flex justify-center items-center h-full'>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={startWrite}>Start</button>

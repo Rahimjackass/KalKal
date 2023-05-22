@@ -42,14 +42,14 @@ async function main() {
 
   console.log("Hub contract deployed to:", HUB.address);
   console.log("-------------------------------------------------------------------")
-  console.log("Deploying Upkeep...");
-  MyContract = await hre.ethers.getContractFactory("UpkeepIDConsumerExample");
-  const UPKEEP = await MyContract.deploy("0x326C977E6efc84E512bB9C30f76E30c160eD06FB", "0x57A4a13b35d25EE78e084168aBaC5ad360252467");
+  // console.log("Deploying Upkeep...");
+  // MyContract = await hre.ethers.getContractFactory("UpkeepIDConsumerExample");
+  // const UPKEEP = await MyContract.deploy("0x326C977E6efc84E512bB9C30f76E30c160eD06FB", "0x57A4a13b35d25EE78e084168aBaC5ad360252467");
 
-  await UPKEEP.deployed();
+  // await UPKEEP.deployed();
 
-  console.log("Upkeep contract deployed to:", UPKEEP.address);
-  console.log("-------------------------------------------------------------------")
+  // console.log("Upkeep contract deployed to:", UPKEEP.address);
+  // console.log("-------------------------------------------------------------------")
 
   // MyContract = await hre.ethers.getContractFactory("Link");
   // const LINK = await MyContract.deploy();
