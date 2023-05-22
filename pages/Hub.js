@@ -1,14 +1,15 @@
 import 'tailwindcss/tailwind.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-
+import { ethers } from "ethers";
 import { usePrepareContractWrite, useContractWrite, useContractEvent } from 'wagmi';
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
+
+import Upkeep from "../artifacts/contracts/Upkeep.sol/UpkeepIDConsumerExample.json";
 import Hub from "../artifacts/contracts/Hub.sol/Hub.json";
-import { HUB_ADDRESS } from "../config.js";
+import { HUB_ADDRESS, UPKEEP_ADDRESS } from "../config.js";
 import PRICE_FEED_ADDRESS from "../config.js";
 import RecentGames from './components/recentGames';
 // const { verifyContract } = require("../utils/verifyContract");
@@ -43,10 +44,10 @@ export default function CreateGame () {
         functionName: 'createGame',
         args: [players, ticket, period],
         onError(error) {
-            console.log('Error', error)
+            console.log('Error Happened for Creation Form', error)
         },
-        onSuccess(data) {
-            console.log('Form is populated', data)
+        onSuccess() {
+            console.log('Creation Form is populated')
         }
     })
 
@@ -55,25 +56,48 @@ export default function CreateGame () {
         onError(error) {
             console.log('Error Happened!', error)
         }, 
-        onSuccess(success) {
-            console.log('Game Creation Successful', success)
-        },
+        // onSuccess(success) {
+        //     console.log('Game Creation Successful', success)
+        // },
         onSettled(response) {
             console.log("New Game Created:", response)
-            // console.log("Waiting 20 seconds before attempting to verify the contract...")
-            // setTimeout(() => {
-            //     hre.run("verify:verify", {
-            //         address: contractAddress,
-            //         constructorArguments: [
-            //             PRICE_FEED_ADDRESS,
-            //             players,
-            //             ticket,
-            //             period
-            //         ],
-            //     })
-            // }, 20000)
         }
     })
+
+    // const { config: upkeepConfig, error:upkeepError } = usePrepareContractWrite({
+    //     address: UPKEEP_ADDRESS,
+    //     abi: Upkeep.abi,
+    //     functionName: 'registerAndPredictID',
+    //     args: [{
+    //         name: "KalKal",
+    //         encryptedEmail: "0x",
+    //         upkeepContract: contractAddress,
+    //         gasLimit: 5000000,
+    //         adminAddress: "0x7599d1DB45B881A80c66FD6A02144c65E553a9E2",
+    //         checkData: "0x",
+    //         offchainConfig: "0x",
+    //         amount: ethers.utils.parseEther("6"), 
+    //     }],
+    //     onError(error) {
+    //         console.log('Upkeep registration faced error', error)
+    //     },
+    //     onSuccess(data) {
+    //         console.log('Form is populated for upkeep registration', data)
+    //     }
+    // })
+
+    // const { data: upkeepData, isLoading: upkeepLoading, isSuccess: upkeepSuccess, write:upkeepWrite } = useContractWrite({
+    //     ...upkeepConfig,
+    //     onError(error) {
+    //         console.log('Error happened while registering upkeep!', error)
+    //     }, 
+    //     onSuccess(success) {
+    //         console.log('Upkeep registration successful', success)
+    //     },
+    //     onSettled(response) {
+    //         console.log("Upkeep Registered:", response)
+    //     }
+    // })
 
 
     useEffect(() => {
@@ -88,15 +112,12 @@ export default function CreateGame () {
 
     return (
         <div className='h-screen flex bg-gradient-to-b from-violet-900'>
-            {/* <audio controls>
-                <source src="../public/congrats.aiff" type="audio/mpeg" />
-            </audio> */}
             <div className='w-1/2'>
                 <RecentGames></RecentGames>
             </div>
 
             <div className='w-1/2'>
-                {isLoading && 
+                {/* {isLoading && 
                 <div class="flex justify-center items-center h-full">
                     <p class="text-center">Check you wallet</p>
                 </div>
@@ -106,17 +127,19 @@ export default function CreateGame () {
                 <div class="flex justify-center items-center h-full">
                     <p class="text-center">Loading...</p>
                 </div>
-                }
+                } */}
 
-                {!isLoading & !isSuccess &&
+                {/* {!isLoading & !isSuccess && */}
                 <div className='w-full'>
                     <div className='flex justify-between px-2 py-3'>
-                        <Link href="https://mumbaifaucet.com/" target="_blank" className='border bg-white text-black font-bold rounded-lg px-2 py-1 ml-1'>MATIC FAUCET</Link>
                         <ConnectButton></ConnectButton>
                     </div>
+                    {contractAddress}
+                    {/* {upkeepLoading}
+                    {upkeepSuccess}  */}
                     <div className='h-screen flex justify-center'>
                         <form className='w-3/5 mt-40'>
-                            <div className="mb-4">
+                            {/* <div className="mb-4">
                                 <label className="block text-white mb-2 text-xs" htmlFor="players">
                                 Number of players
                                 </label>
@@ -127,7 +150,7 @@ export default function CreateGame () {
                                 placeholder="example 4"
                                 onChange={(x) => setPlayers(x.target.value)}
                                 />
-                            </div>
+                            </div> */}
                             <div className="mb-4">
                                 <label className="block text-white mb-2 text-xs" htmlFor="priod">
                                 Game duration in seconds
@@ -166,10 +189,18 @@ export default function CreateGame () {
                                 You already in a game?
                                 </a>
                             </div>
+                            {/* <button
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            type="button"
+                            onClick={() => upkeepWrite}
+                            disabled={!contractAddress}
+                            >
+                            Register contract as upkeep
+                            </button> */}
                         </form> 
                     </div>
                 </div>
-                }
+                {/* } */}
             </div>
         </div>
     )

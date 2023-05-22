@@ -26,19 +26,29 @@ async function main() {
   console.log(`Balance of account3: ${ethers.utils.formatEther(await account3.getBalance()).slice(0, 4)}MATIC`);
 
   console.log("-------------------------------------------------------------------")
+  console.log("Deploying Pricefeed...");
   let MyContract = await hre.ethers.getContractFactory("PriceFeed");
   const PRICEFEED = await MyContract.deploy();
 
   await PRICEFEED.deployed();
 
   console.log("PriceFeed deployed to:", PRICEFEED.address);
-  //-------------------------------------------------------------------
+  console.log("-------------------------------------------------------------------")
+  console.log("Deploying Hub...");
   MyContract = await hre.ethers.getContractFactory("Hub");
   const HUB = await MyContract.deploy(PRICEFEED.address);
 
   await HUB.deployed();
 
   console.log("Hub contract deployed to:", HUB.address);
+  console.log("-------------------------------------------------------------------")
+  console.log("Deploying Upkeep...");
+  MyContract = await hre.ethers.getContractFactory("UpkeepIDConsumerExample");
+  const UPKEEP = await MyContract.deploy("0x326C977E6efc84E512bB9C30f76E30c160eD06FB", "0x57A4a13b35d25EE78e084168aBaC5ad360252467");
+
+  await UPKEEP.deployed();
+
+  console.log("Upkeep contract deployed to:", UPKEEP.address);
   console.log("-------------------------------------------------------------------")
 
   // MyContract = await hre.ethers.getContractFactory("Link");
