@@ -2,19 +2,15 @@ import 'tailwindcss/tailwind.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { ethers } from "ethers";
-import { usePrepareContractWrite, useContractWrite, useContractEvent } from 'wagmi';
+import { usePrepareContractWrite, useContractWrite, useWaitForTransaction, useContractEvent } from 'wagmi';
 import Link from 'next/link';
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-
-// import Upkeep from "../artifacts/contracts/Upkeep.sol/UpkeepIDConsumerExample.json";
 import Hub from "../artifacts/contracts/Hub.sol/Hub.json";
 import { HUB_ADDRESS, UPKEEP_ADDRESS } from "../config.js";
 import PRICE_FEED_ADDRESS from "../config.js";
 import RecentGames from './components/recentGames';
-// const { verifyContract } = require("../utils/verifyContract");
-
 
 
 export default function CreateGame () {
@@ -25,7 +21,6 @@ export default function CreateGame () {
     const [ ticket, setTicket ] = useState(0);
     const [ period, setPeriod ] = useState(0);
     const [ contractAddress, setContractAddress ] = useState(null)
-
 
     useContractEvent({
         address: HUB_ADDRESS,
@@ -64,41 +59,6 @@ export default function CreateGame () {
         }
     })
 
-    // const { config: upkeepConfig, error:upkeepError } = usePrepareContractWrite({
-    //     address: UPKEEP_ADDRESS,
-    //     abi: Upkeep.abi,
-    //     functionName: 'registerAndPredictID',
-    //     args: [{
-    //         name: "KalKal",
-    //         encryptedEmail: "0x",
-    //         upkeepContract: contractAddress,
-    //         gasLimit: 5000000,
-    //         adminAddress: "0x7599d1DB45B881A80c66FD6A02144c65E553a9E2",
-    //         checkData: "0x",
-    //         offchainConfig: "0x",
-    //         amount: ethers.utils.parseEther("6"), 
-    //     }],
-    //     onError(error) {
-    //         console.log('Upkeep registration faced error', error)
-    //     },
-    //     onSuccess(data) {
-    //         console.log('Form is populated for upkeep registration', data)
-    //     }
-    // })
-
-    // const { data: upkeepData, isLoading: upkeepLoading, isSuccess: upkeepSuccess, write:upkeepWrite } = useContractWrite({
-    //     ...upkeepConfig,
-    //     onError(error) {
-    //         console.log('Error happened while registering upkeep!', error)
-    //     }, 
-    //     onSuccess(success) {
-    //         console.log('Upkeep registration successful', success)
-    //     },
-    //     onSettled(response) {
-    //         console.log("Upkeep Registered:", response)
-    //     }
-    // })
-
 
     useEffect(() => {
         if (contractAddress) {
@@ -109,13 +69,12 @@ export default function CreateGame () {
         }
     }, [contractAddress])
 
-
     return (
         <div className='h-screen flex bg-gradient-to-b from-violet-900'>
             <div className='w-1/2'>
                 <RecentGames></RecentGames>
             </div>
-
+            {/* {contractAddress} */}
             <div className='w-1/2'>
                 {isLoading && 
                 <div class="flex justify-center items-center h-full">
@@ -199,7 +158,7 @@ export default function CreateGame () {
                         </form> 
                     </div>
                 </div>
-                }
+            }
             </div>
         </div>
     )

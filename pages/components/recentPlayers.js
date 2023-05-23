@@ -129,7 +129,7 @@ export default function RecentPlayers() {
                 <header className="bg-gray-800 text-white p-4 text-center rounded-t-md">
                     <h1 className="text-xl font-bold"> Registered Players</h1>
                 </header>
-                <div className='flex my-2 text-white'>
+                <div className='flex my-1 mx-1 text-white'>
                     <p className="w-1/5 text-center text-sm">Name</p>
                     <p className='w-1/5 text-center text-sm'>Choice</p>
                     <p className="w-1/5 text-center text-sm">Open</p>

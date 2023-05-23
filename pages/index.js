@@ -27,7 +27,7 @@ export default function Home() {
           <h1 className='text-center text-4xl pt-40 mb-6'>
             Welcome to <b>KalKal</b>
           </h1>
-          <ConnectButton label="DO NOT CLICK"></ConnectButton>
+          <ConnectButton></ConnectButton>
         </div>
       </div>
       

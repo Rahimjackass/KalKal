@@ -17,17 +17,10 @@ export default function Game () {
 
     const { contract } = router.query;
 
-    const [ recentOption, setRecentOption ] = useState(null);
-
     const [ choice, setChoice ] = useState(null);
     const [ name, setName ] = useState(null)
 
     const [ paused, setPaused ] = useState(null)
-    const [ winnerName, setWinnerName ] = useState(null);
-
-    const handleButtonClick = (option) => {
-        setRecentOption(option);
-    };
 
     useContractRead({
         address: contract,
@@ -44,22 +37,6 @@ export default function Game () {
           setPaused(data);
         }
     })
-
-    // useContractRead({
-    //     address: contract,
-    //     abi: GameArtifact.abi,
-    //     functionName: 'winnerName',
-    //     onError(error) {
-    //         console.log('Error', error)
-    //     },
-    //     onSuccess(data) {
-    //         console.log('Success', data)
-    //     },
-    //     onSettled(data) {
-    //       console.log("data:", data)
-    //       setWinnerName(data);
-    //     }
-    // })
 
     const { config, error } = usePrepareContractWrite({
         address: contract,
@@ -199,7 +176,7 @@ export default function Game () {
                         </div> 
                         <div className='flex justify-center items-center h-full'>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={startWrite}>Start</button>
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={endWrite}>End</button>
+                            {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={endWrite}>End</button> */}
                         </div>
                     </div>
                     }
