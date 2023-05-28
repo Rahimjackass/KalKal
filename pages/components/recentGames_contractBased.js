@@ -55,7 +55,7 @@ export default function RecentGames () {
             </header>
             <div className='flex my-2 text-white'>
                 <p className='w-1/6 text-center text-md'>#</p>
-                <p className="w-3/6 text-center text-md">Contract Address</p>
+                <p className="w-1/2 text-center text-md">Contract Address</p>
                 <p className='w-1/6 text-center text-md'>Ticket</p>
                 <p className='w-1/6 text-center text-md'>Period</p>
             </div>
@@ -64,7 +64,7 @@ export default function RecentGames () {
                     <Link href={`/Game?contract=${x.address}`}>
                         <div className='flex justify-center items-center py-2 my-1 mx-1 bg-white border rounded-lg hover:bg-blue-300' key={x.number}>
                             <p className='w-1/6 text-center text-md'>{x.number}</p>
-                            <p className='w-fit text-center text-xs pl-3'>{x.address}</p>
+                            <p className='text-center text-xs pl-3'>{x.address}</p>
                             <p className='w-1/6 text-center text-xs'><b>{x.ticket}</b> MATIC</p>
                             <p className='w-1/6 text-center text-xs'><b>{x.period}</b> Sec</p>     
                         </div>
