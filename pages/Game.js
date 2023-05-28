@@ -75,9 +75,9 @@ export default function Game () {
         onError(error) {
             console.log('Error Happened', error)
         },
-        onSuccess(data) {
-            console.log('startGame function prepared!', data)
-        }
+        // onSuccess(data) {
+        //     console.log('startGame function prepared!', data)
+        // }
     })
     
 
@@ -104,9 +104,9 @@ export default function Game () {
         onError(error) {
             console.log('Error Happened', error)
         },
-        onSuccess(data) {
-            console.log('endGame function prepared!', data)
-        }
+        // onSuccess(data) {
+        //     console.log('endGame function prepared!', data)
+        // }
     })
     
 

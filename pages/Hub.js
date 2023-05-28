@@ -10,14 +10,14 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import Hub from "../artifacts/contracts/Hub.sol/Hub.json";
 import { HUB_ADDRESS, UPKEEP_ADDRESS } from "../config.js";
 import PRICE_FEED_ADDRESS from "../config.js";
-import RecentGames from './components/recentGames';
+import RecentGames from './components/recentGames_contractBased';
 
 
 export default function CreateGame () {
 
     const router = useRouter();
 
-    const [ players, setPlayers ] = useState(0);
+    // const [ players, setPlayers ] = useState(0);
     const [ ticket, setTicket ] = useState(0);
     const [ period, setPeriod ] = useState(0);
     const [ contractAddress, setContractAddress ] = useState(null)
@@ -26,8 +26,8 @@ export default function CreateGame () {
         address: HUB_ADDRESS,
         abi: Hub.abi,
         eventName: 'gameCreated',
-        listener(players, ticketPrice, contractAddress, period, creator) {
-            console.log(players, ticketPrice, contractAddress, period, creator)
+        listener(ticketPrice, contractAddress, period, creator) {
+            console.log(ticketPrice, contractAddress, period, creator)
             setContractAddress(contractAddress)
         },
         once: true,
@@ -37,7 +37,7 @@ export default function CreateGame () {
         address: HUB_ADDRESS,
         abi: Hub.abi,
         functionName: 'createGame',
-        args: [players, ticket, period],
+        args: [ticket, period],
         onError(error) {
             console.log('Error Happened for Creation Form', error)
         },
@@ -69,6 +69,7 @@ export default function CreateGame () {
         }
     }, [contractAddress])
 
+
     return (
         <div className='h-screen flex bg-gradient-to-b from-violet-900'>
             <div className='w-1/2'>
@@ -97,7 +98,7 @@ export default function CreateGame () {
                     {contractAddress}
                     <div className='h-screen flex justify-center'>
                         <form className='w-3/5 mt-40'>
-                            <div className="mb-4">
+                            {/* <div className="mb-4">
                                 <label className="block text-white mb-2 text-xs" htmlFor="players">
                                 Number of players
                                 </label>
@@ -108,7 +109,7 @@ export default function CreateGame () {
                                 placeholder="example 4"
                                 onChange={(x) => setPlayers(x.target.value)}
                                 />
-                            </div>
+                            </div> */}
                             <div className="mb-4">
                                 <label className="block text-white mb-2 text-xs" htmlFor="priod">
                                 Game duration in seconds
@@ -136,7 +137,7 @@ export default function CreateGame () {
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 type="button"
                                 onClick={() => write?.()}
-                                disabled={players==0 || ticket==0}
+                                disabled={period==0 || ticket==0}
                                 >
                                 Create Game
                                 </button>
