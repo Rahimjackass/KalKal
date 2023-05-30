@@ -14,6 +14,7 @@ import "./PriceFeed.sol";
 contract Game {
     PriceFeed internal priceFeed;
 
+    address public admin;
     // uint public players;
     uint public ticketPrice;
 
@@ -29,11 +30,13 @@ contract Game {
 
     constructor(
         address _priceFeed,
+        address _admin,
         // uint _players,
         uint _ticketPrice,
         uint _period
     ) {
         priceFeed = PriceFeed(_priceFeed);
+        admin = _admin;
         // players = _players;
         ticketPrice = _ticketPrice;
         period = _period;

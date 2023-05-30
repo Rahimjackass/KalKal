@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import 'tailwindcss/tailwind.css';
-import {useState, useEffect} from "react";
+import {useState, useEffect, CSSProperties} from "react";
 
-import { usePrepareContractWrite, useContractWrite, useContractEvent, useContractRead } from 'wagmi';
+import { usePrepareContractWrite, useContractWrite, useContractEvent, useContractRead, useAccount } from 'wagmi';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { ethers } from 'ethers';
 
@@ -11,11 +11,17 @@ import Link from 'next/link';
 import RecentPlayers from './components/recentPlayers';
 import Information from './components/information';
 
+import PacmanLoader from "react-spinners/ClipLoader";
+
 export default function Game () {
 
     const router = useRouter();
 
+    const { address } = useAccount()
+
     const { contract } = router.query;
+
+    const [ admin, setAdmin ] = useState(null);
 
     const [ choice, setChoice ] = useState(null);
     const [ name, setName ] = useState(null)
@@ -27,14 +33,24 @@ export default function Game () {
         abi: GameArtifact.abi,
         functionName: 'paused',
         onError(error) {
-            console.log('Error', error)
-        },
-        onSuccess(data) {
-            console.log('Success', data)
+            console.log('Error while reading paused variable', error)
         },
         onSettled(data) {
-          console.log("data:", data)
+          console.log("Paused Variable:", data)
           setPaused(data);
+        }
+    })
+
+    useContractRead({
+        address: contract,
+        abi: GameArtifact.abi,
+        functionName: 'admin',
+        onError(error) {
+            console.log('Error', error)
+        },
+        onSettled(data) {
+          console.log("Admin Variable:", data)
+          setAdmin(data);
         }
     })
 
@@ -97,35 +113,6 @@ export default function Game () {
         }
     })
 
-    const { config: endConfig, error: endError } = usePrepareContractWrite({
-        address: contract,
-        abi: GameArtifact.abi,
-        functionName: 'endGame',
-        onError(error) {
-            console.log('Error Happened', error)
-        },
-        // onSuccess(data) {
-        //     console.log('endGame function prepared!', data)
-        // }
-    })
-    
-
-    const { data: endData, isLoading: endLoading, isSuccess: endSuccess, write: endWrite } = useContractWrite({
-        ...endConfig,
-        onError(error) {
-            console.log('Error Happened!', error)
-        }, 
-        onSuccess(success) {
-            console.log('Game Ended!', success)
-        },
-        onSettled(response) {
-            console.log("Transaction Receipt:", response)
-            setTimeout(() => {
-                location.reload();
-            }, 10000)
-        }
-    })
-
     return (
 
         <div className="h-full bg-gradient-to-b from-rose-600 to-violet-500">
@@ -133,7 +120,7 @@ export default function Game () {
                 <div className="flex justify-between items-center">
                     <Link href="./Hub"><h1 className="text-xl font-bold ml-5">KalKal</h1></Link>
                     <div className="flex items-center">
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 rounded focus:outline-none focus:shadow-outline" onClick={startWrite}>Start</button>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 rounded focus:outline-none focus:shadow-outline" onClick={startWrite} hidden={admin != address}>Start</button>
                         <h2 className='pr-1'>Game Status:</h2>
                         {paused ? <p className="text-red-500">  Not started/Finished</p> : <p className="text-green-600">Ongoing</p>}
                     </div>
@@ -142,19 +129,11 @@ export default function Game () {
             </header>
             <div className="flex">
                 <div className="w-3/6 h-screen rounded-md">
-                    {isLoading || startLoading || endLoading && 
-                    <div class="flex justify-center items-center h-full">
-                        <p class="text-center">Check your wallet</p>
+                    {isLoading || isSuccess ? 
+                    <div className="flex justify-center items-center h-screen">
+                        <PacmanLoader color="#000000" size={50}/>
                     </div>
-                    }
-
-                    {isSuccess || endSuccess || startSuccess && 
-                    <div class="flex justify-center items-center h-full">
-                        <p class="text-center">Loading...</p>
-                    </div>
-                    }
-
-                    {!isLoading & !isSuccess && 
+                    :
                     <div>
                         <p className='text-center text-white my-2'>( 1 ) pick a coin</p>
                         <div className="w-full mt-2 flex px-1.5">
@@ -176,7 +155,7 @@ export default function Game () {
                 </div>     
                 <div className="w-4/6 h-screen border rounded-md">
                     <RecentPlayers contract={contract}></RecentPlayers>
-                </div>             
+                </div>          
             </div>
         </div>
   

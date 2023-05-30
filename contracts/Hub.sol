@@ -46,7 +46,7 @@ contract Hub is AutomationCompatibleInterface {
         uint _ticketPrice,
         uint _period
     ) public returns (Game _newGame) {
-        Game newGame = new Game(priceFeed, _ticketPrice, _period);
+        Game newGame = new Game(priceFeed, msg.sender, _ticketPrice, _period);
         emit gameCreated(
             // _players,
             _ticketPrice,
