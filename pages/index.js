@@ -16,22 +16,28 @@ export default function Home() {
       Router.push('/Hub')    
     }
   })
-
+//bg-gradient-to-b from-blue-300 to-red-400
   return (
     <div>
       <Head>
         <title>KalKal</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="h-screen bg-top bg-cover flex flex-col justify-center items-center" style={{ backgroundImage: "url('/background.png')"}}>
+      <div className="h-screen bg-top bg-cover flex flex-col " style={{ backgroundImage: "url('/background.png')"}}>
+        {/* <div className='bg-gradient-to-b from-red-400 to-blue-600 mb-10'>
+          <h1 className='text-3xl text-center text-white py-6'>KalKal</h1>
+        </div> */}
 
-        <div className='bg-gradient-to-b from-blue-300 to-red-400 flex flex-col items-center justify-center w-80 rounded-3xl px-1 py-10 mb-10'>
-          <h1 className='text-3xl pb-5'>Welcome to <b>KalKal</b></h1>
-          <p className='text-white text-sm text-center px-2 mb-6'>bet on prices, win big!</p>
-          <ConnectButton label="connect wallet" />
+        <div className='bg-gradient-to-b from-blue-800 w-96 mx-auto rounded-3xl-b pb-5 pt-4 mb-10 mt-40 border-2 border-black border-b-0 rounded-t-lg'>
+          <p className='text-white bg-emerald-500 text-xs text-left px-3 py-2 rounded-e-2xl w-auto my-2 mr-52'>which crypto this month?</p>
+          <p className='text-white bg-emerald-500 text-xs text-right px-3 py-2 rounded-s-2xl my-2 ml-64'>I would say ETH</p>
+          <p className='text-white bg-emerald-500 text-xs text-left px-3 py-2 rounded-e-2xl my-2 mr-64'>but I think BTC</p>
+          <p className='text-white bg-emerald-500 text-xs text-right pl-3 pr-5 py-2 rounded-s-2xl my-2 ml-64'>Are you sure?</p>
+          <p className='text-white bg-emerald-500 text-xs text-left px-3 py-2 rounded-e-2xl my-2 mr-56'>Yeah! Let's make a bet</p>
         </div>
-
-
+        {/* <div className='mx-auto'>
+          <ConnectButton label="connect wallet" />
+        </div> */}
         {/* <h1 className='text-center text-4xl text-lime-950 mb-6'>
           don't argue! use <b>KalKal</b>
         </h1> */}
