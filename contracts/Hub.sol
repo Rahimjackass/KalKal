@@ -12,7 +12,8 @@ contract Hub is AutomationCompatibleInterface {
 
     struct createdGame {
         address _address;
-        address _creator;
+        address _adminAddress;
+        string _adminName;
         uint _ticket;
         uint _period;
     }
@@ -33,9 +34,11 @@ contract Hub is AutomationCompatibleInterface {
 
     function getGameInformation(
         uint _index
-    ) public view returns (address, uint, uint) {
+    ) external view returns (address, address, string memory, uint, uint) {
         return (
             counterToAddress[_index]._address,
+            counterToAddress[_index]._adminAddress,
+            counterToAddress[_index]._adminName,
             counterToAddress[_index]._ticket,
             counterToAddress[_index]._period
         );
@@ -44,9 +47,17 @@ contract Hub is AutomationCompatibleInterface {
     function createGame(
         // uint _players,
         uint _ticketPrice,
-        uint _period
+        uint _period,
+        string calldata _adminName
     ) public returns (Game _newGame) {
-        Game newGame = new Game(priceFeed, msg.sender, _ticketPrice, _period);
+        Game newGame = new Game(
+            priceFeed,
+            msg.sender,
+            _adminName,
+            _ticketPrice,
+            _period
+        );
+
         emit gameCreated(
             // _players,
             _ticketPrice,
@@ -59,6 +70,7 @@ contract Hub is AutomationCompatibleInterface {
         counterToAddress[games] = createdGame(
             address(newGame),
             msg.sender,
+            _adminName,
             _ticketPrice,
             _period
         );

@@ -28,12 +28,16 @@ export default function Home() {
           <h1 className='text-3xl text-center text-white py-6'>KalKal</h1>
         </div> */}
 
-        <div className='bg-gradient-to-b from-blue-800 w-96 mx-auto rounded-3xl-b pb-5 pt-4 mb-10 mt-40 border-2 border-black border-b-0 rounded-t-lg'>
-          <p className='text-white bg-emerald-500 text-xs text-left px-3 py-2 rounded-e-2xl w-auto my-2 mr-52'>which crypto this month?</p>
-          <p className='text-white bg-emerald-500 text-xs text-right px-3 py-2 rounded-s-2xl my-2 ml-64'>I would say ETH</p>
-          <p className='text-white bg-emerald-500 text-xs text-left px-3 py-2 rounded-e-2xl my-2 mr-64'>but I think BTC</p>
-          <p className='text-white bg-emerald-500 text-xs text-right pl-3 pr-5 py-2 rounded-s-2xl my-2 ml-64'>Are you sure?</p>
-          <p className='text-white bg-emerald-500 text-xs text-left px-3 py-2 rounded-e-2xl my-2 mr-56'>Yeah! Let's make a bet</p>
+        <div className='w-1/3 h-screen mx-auto'>
+          <div className='h-full opacity-0 hover:opacity-100 transition-opacity duration-300 bg-gradient-to-b from-blue-800 to-teal-400 pt-12'>
+            <p className='text-white bg-emerald-500 text-sm text-left px-3 py-2 rounded-e-2xl my-2 mr-40 border-2 border-white border-l-0 mt-20'>"which crypto this month?"</p>
+            <p className='text-white bg-emerald-500 text-sm text-right px-3 py-2 rounded-s-2xl my-2 ml-60 border-2 border-white border-r-0'>"I would say ETH"</p>
+            <p className='text-white bg-emerald-500 text-sm text-left px-3 py-2 rounded-e-2xl my-2 mr-60 border-2 border-white border-l-0'>"but I think BTC"</p>
+            <p className='text-white bg-emerald-500 text-sm text-right pl-3 pr-5 py-2 rounded-s-2xl my-2 ml-60 border-2 border-white border-r-0'>"Are you sure?"</p>
+            <p className='text-white bg-emerald-500 text-sm text-left px-3 py-2 rounded-e-2xl my-2 mr-40 border-2 border-white border-l-0'>"Yeah! Let's make a bet"</p>
+            <p className='text-white bg-emerald-500 text-sm text-right pl-1 pr-9 py-2 rounded-s-2xl my-2 ml-64 border-2 border-white border-r-0'>"where?"</p>
+            <p className='text-white bg-emerald-500 text-sm text-left px-3 py-2 rounded-e-2xl my-2 mr-60 border-2 border-white border-l-0'>"Hmmm...."</p>
+          </div>
         </div>
         {/* <div className='mx-auto'>
           <ConnectButton label="connect wallet" />

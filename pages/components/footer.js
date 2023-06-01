@@ -11,7 +11,7 @@ export default function CustomFooter () {
             >
                 Made by Sina
             </a> */}
-            <ConnectButton label="Let's play"/>
+            <ConnectButton label="KalKal"/>
 
         </div>
     )

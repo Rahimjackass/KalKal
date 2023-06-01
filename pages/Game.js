@@ -135,7 +135,14 @@ export default function Game () {
                     </div>
                     :
                     <div>
-                        <p className='text-center text-white my-2'>( 1 ) pick a coin</p>
+                        <div className='flex flex-col bg-green-600 border border-transparent w-auto rounded-3xl py-3 mx-3 my-3'>
+                            <h1 className='text-lg text-left mb-1.5 pl-4'>How to register?</h1>
+                            <div className='text-left'>
+                                <p className='text-white text-sm px-3'>1- pick a coin</p>
+                                <p className='text-white text-sm px-3'>2- enter your name and submit</p>
+                            </div>
+                        </div>
+                        {/* <p className='text-center text-white my-2'>( 1 ) </p> */}
                         <div className="w-full mt-2 flex px-1.5">
                             <button className={`w-20 py-10 my-1 ml-1 rounded-3xl ${choice === 0 ? 'bg-blue-500' : 'bg-fuchsia-200'} hover:bg-blue-500 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(0)} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><img className="px-1" src="./btc.png"></img></button>                            
                             <button className={`w-20 py-10 my-1 ml-1 rounded-3xl ${choice === 1 ? 'bg-blue-500' : 'bg-fuchsia-200'} hover:bg-blue-500 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(1)} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><img className="px-0.5" src="./eth.png"></img></button>                            
@@ -144,7 +151,7 @@ export default function Game () {
                             <button className={`w-20 py-10 my-1 ml-1 rounded-3xl ${choice === 4 ? 'bg-blue-500' : 'bg-fuchsia-200'} hover:bg-blue-500 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(4)} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><img className="px-0.5" src="./sand.png"></img></button>                            
                             <button className={`w-20 py-10 my-1 ml-1 rounded-3xl ${choice === 5 ? 'bg-blue-500' : 'bg-fuchsia-200'} hover:bg-blue-500 text-white font-bold focus:outline-none focus:shadow-outline`} onClick={() => setChoice(5)} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}><img className="px-1" src="./sol.png"></img></button>                            
                         </div> 
-                        <p className='text-center text-white mb-1 mt-4'>( 2 ) enter your name and submit</p>
+                        {/* <p className='text-center text-white mb-1 mt-4'>( 2 ) </p> */}
                         <div className='my-2 mx-2 flex justify-center'>
                             <input className="w-full h-10 rounded-md px-2" type="text" placeholder="Rahimjackass" onChange={(x) => setName(x.target.value)}></input>
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm focus:outline-none focus:shadow-outline" disabled={choice == null || !name} onClick={write}>submit</button>

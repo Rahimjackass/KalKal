@@ -20,7 +20,7 @@ export default function CreateGame () {
     const router = useRouter();
 
     // const [ players, setPlayers ] = useState(0);
-
+    const [ name, setName ] = useState(null)
     const [ ticket, setTicket ] = useState(0);
     const [ period, setPeriod ] = useState(0);
     const [ contractAddress, setContractAddress ] = useState(null)
@@ -40,7 +40,7 @@ export default function CreateGame () {
         address: HUB_ADDRESS,
         abi: Hub.abi,
         functionName: 'createGame',
-        args: [ticket, period],
+        args: [ticket, period, name],
         onError(error) {
             console.log('Error Happened for Creation Form', error)
         },
@@ -75,11 +75,11 @@ export default function CreateGame () {
 
     return (
         <div className='h-screen flex bg-gradient-to-b from-violet-700'>
-            <div className='w-1/2'>
+            <div className='w-5/12'>
                 <RecentGames></RecentGames>
             </div>
             {/* {contractAddress} */}
-            <div className='w-1/2'>
+            <div className='w-7/12'>
 
                 {isLoading || isSuccess ? 
                 <div className="flex justify-center items-center h-screen">
@@ -87,24 +87,29 @@ export default function CreateGame () {
                 </div>
                 :
                 <div className='w-full'>
-                    <div className='flex justify-between px-3 py-3'>
-                        <Link href="https://mumbaifaucet.com/" target="_blank" className='bg-blue-500 text-white font-bold rounded-lg px-2 py-1'>test tokens</Link>
-                        <ConnectButton chainStatus="icon"></ConnectButton>
-                    </div>
-                    <div className='flex flex-col bg-green-600 border border-transparent w-auto rounded-3xl py-3 mx-3'>
-                        <h1 className='text-lg text-left mb-1.5 pl-4'>how to create a game?</h1>
+                    <div className='flex flex-col bg-green-600 border border-transparent w-auto rounded-3xl py-3 mx-3 my-3'>
+                        <h1 className='text-lg text-left mb-1.5 pl-4'>What is this game?</h1>
                         <div className='text-left'>
-                            {/* <p className='text-white text-sm px-3'></p> */}
-                            <p className='text-white text-sm px-3'>- what is period?</p>
+                            <p className='text-white text-sm px-3'>- what is this game?</p>
                             <p className='text-white text-sm px-3'>- what is ticket price?</p>
-                            {/* <p className='text-white text-sm px-3'>- pick a cryptocurrency, enter your name, and submit your bet</p>
-                            <p className='text-white text-sm px-3'>- invite your friends to do the same</p>
-                            <p className='text-white text-sm px-3'>- start the game</p> */}
                         </div>
                     </div>
-                    {contractAddress}
+
+                    <div className='flex flex-col bg-green-600 border border-transparent w-auto rounded-3xl py-3 mx-3'>
+                        <h1 className='text-lg text-left mb-1.5 pl-4'>How to play?</h1>
+                        <div className='text-left'>
+                            <p className='text-white text-sm px-3'>You can either choose out of the already created games, or create your own game</p>
+                            {/* <p className='text-white text-sm px-3'>- what is ticket price?</p> */}
+                        </div>
+                    </div>
+
+                    <div className='flex justify-between px-3 py-3'>
+                        <Link href="https://mumbaifaucet.com/" target="_blank" className='bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-lg px-2 py-1'>test tokens</Link>
+                        <ConnectButton chainStatus="icon"></ConnectButton>
+                    </div>
+
                     <div className='h-screen flex justify-center'>
-                        <form className='w-3/5 mt-40'>
+                        <form className='w-3/5 mt-10'>
                             {/* <div className="mb-4">
                                 <label className="block text-white mb-2 text-xs" htmlFor="players">
                                 Number of players
@@ -117,8 +122,19 @@ export default function CreateGame () {
                                 onChange={(x) => setPlayers(x.target.value)}
                                 />
                             </div> */}
-                            <div className="mb-4">
-                                <label className="block text-white mb-2 text-xs" htmlFor="priod">
+                            <div className="mb-2">
+                                <label className="block text-white mb-2 text-xs" htmlFor="name">
+                                Name
+                                </label>
+                                <input
+                                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="name"
+                                type="string"
+                                placeholder="example Mamad"
+                                onChange={(x) => setName(x.target.value)}/>
+                            </div>
+                            <div className="mb-2">
+                                <label className="block text-white mb-2 text-xs" htmlFor="period">
                                 Game duration in seconds
                                 </label>
                                 <input
