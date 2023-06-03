@@ -11,8 +11,10 @@
     "ethers": "^5.7.2",
     "next": "latest",
     "react": "18.2.0",
+    "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "18.2.0",
     "react-spinners": "^0.13.8",
+    "react-timer-hook": "^3.0.6",
     "wagmi": "^0.12.10"
   },
   "devDependencies": {

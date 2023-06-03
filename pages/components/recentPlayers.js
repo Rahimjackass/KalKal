@@ -138,7 +138,7 @@ export default function RecentPlayers() {
                 </div>
                 {
                     response.map((x) => (
-                        <div className={`flex py-2 my-1 mx-1 ${x.winner == true ? 'bg-green-400' : 'bg-blue-100 hover:bg-blue-300'} border rounded-lg`} key={x.name}>
+                        <div className={`flex py-2 my-1 mx-1 ${x.winner == true ? 'bg-sky-400' : 'bg-blue-100 hover:bg-blue-200'} border rounded-lg`} key={x.name}>
                             <p className='w-1/5 text-center text-xs'><b>{x.name}</b></p>     
                             <p className='w-1/5 text-center text-xs'><b>{x.choice}</b></p>      
                             <p className='w-1/5 text-center text-xs'>{x.open == 0 ? "-" : `${x.open}`}</p>                  

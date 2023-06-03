@@ -17,6 +17,7 @@ contract Game {
     address public adminAddress;
     string public adminName;
     // uint public players;
+
     uint public ticketPrice;
 
     uint public counter;
@@ -80,7 +81,9 @@ contract Game {
     function takePart(
         string calldata _name,
         uint _choice
-    ) public returns (Player memory) {
+    ) public payable returns (Player memory) {
+        require(msg.value >= ticketPrice, "Not enough funds provided");
+
         Player memory user = Player(_name, msg.sender, _choice, 0, 0, 0, false);
 
         counter += 1;
@@ -90,6 +93,10 @@ contract Game {
     }
 
     function startGame() public {
+        require(
+            msg.sender == adminAddress,
+            "msg.sender is not admin! only admin can start the game"
+        );
         uint choice;
         for (uint i = 1; i < counter + 1; i++) {
             choice = counterToPlayer[i].choice;
@@ -174,14 +181,23 @@ contract Game {
     }
 
     function countWinners() public {
-        for (uint i = 0; i < counter + 1; i++) {
+        for (uint i = 1; i < counter + 1; i++) {
             if (counterToPlayer[i].choice == winnerChoice) {
                 counterToPlayer[i].winner = true;
                 winners += 1;
             }
         }
+        splitMoney();
+    }
+
+    function splitMoney() public {
+        uint share = address(this).balance / winners;
+        for (uint i = 1; i < counter + 1; i++) {
+            if (counterToPlayer[i].winner == true) {
+                payable(counterToPlayer[i].wallet).transfer(share);
+            }
+        }
         paused = true;
-        // splitMoney()
     }
 
     function getBalance() public view returns (uint) {

@@ -88,17 +88,18 @@ export default function CreateGame () {
                 :
                 <div className='w-full'>
                     <div className='flex flex-col bg-green-600 border border-transparent w-auto rounded-3xl py-3 mx-3 my-3'>
-                        <h1 className='text-lg text-left mb-1.5 pl-4'>What is this game?</h1>
+                        <h1 className='text-lg text-left mb-1.5 pl-3'>What is this game?</h1>
                         <div className='text-left'>
-                            <p className='text-white text-sm px-3'>- what is this game?</p>
-                            <p className='text-white text-sm px-3'>- what is ticket price?</p>
+                            <p className='text-white text-sm px-3'>- KalKal enables users to make a bet on the price performance of different cryptocurrencies over a fixed period of time</p>
+                            <p className='text-white text-sm px-3'>- for submiting a bet users need to pay an amount ( in Matic )</p>
+                            <p className='text-white text-sm px-3'>- at the end of the period, whoever has picked the cryptocurrency with the best price performance wins the prize</p>
                         </div>
                     </div>
 
                     <div className='flex flex-col bg-green-600 border border-transparent w-auto rounded-3xl py-3 mx-3'>
-                        <h1 className='text-lg text-left mb-1.5 pl-4'>How to play?</h1>
+                        <h1 className='text-lg text-left mb-1.5 pl-3'>How to play?</h1>
                         <div className='text-left'>
-                            <p className='text-white text-sm px-3'>You can either choose out of the already created games, or create your own game</p>
+                            <p className='text-white text-sm px-3'>to play the game you should either enter an already created game, or create your own one</p>
                             {/* <p className='text-white text-sm px-3'>- what is ticket price?</p> */}
                         </div>
                     </div>
@@ -124,35 +125,35 @@ export default function CreateGame () {
                             </div> */}
                             <div className="mb-2">
                                 <label className="block text-white mb-2 text-xs" htmlFor="name">
-                                Name
+                                admin name
                                 </label>
                                 <input
                                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="name"
                                 type="string"
-                                placeholder="example Mamad"
+                                placeholder="like Mamad"
                                 onChange={(x) => setName(x.target.value)}/>
                             </div>
                             <div className="mb-2">
                                 <label className="block text-white mb-2 text-xs" htmlFor="period">
-                                Game duration in seconds
+                                game duration ( seconds )
                                 </label>
                                 <input
                                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="period"
                                 type="number"
-                                placeholder="example 50"
+                                placeholder="like 4200"
                                 onChange={(x) => setPeriod(x.target.value)}/>
                             </div>
                             <div className="mb-4">
                                 <label className="block text-white mb-2 text-xs" htmlFor="ticketPrice">
-                                Ticket price in Matic
+                                ticket ( matic )
                                 </label>
                                 <input
                                 className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="ticketPrice"
                                 type="number"
-                                placeholder="example 20"
+                                placeholder="like 1"
                                 onChange={(x) => setTicket(x.target.value)}/>
                             </div>
                             <div className="flex items-center justify-between">

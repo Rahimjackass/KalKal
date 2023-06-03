@@ -15,15 +15,15 @@ async function main() {
   console.log("-------------------------------------------------------------------")
 
   console.log("account1", account1.address)
-  console.log(`Balance of account1: ${ethers.utils.formatEther(await account1.getBalance()).slice(0, 4)}MATIC`);
+  console.log(`Balance of account1: ${ethers.utils.formatEther(await account1.getBalance()).slice(0, 4)} MATIC`);
   console.log("-------------------------------------------------------------------")
 
   console.log("account2", account2.address)
-  console.log(`Balance of account2: ${ethers.utils.formatEther(await account2.getBalance()).slice(0, 4)}MATIC`);
+  console.log(`Balance of account2: ${ethers.utils.formatEther(await account2.getBalance()).slice(0, 4)} MATIC`);
   console.log("-------------------------------------------------------------------")
 
   console.log("account3", account3.address)
-  console.log(`Balance of account3: ${ethers.utils.formatEther(await account3.getBalance()).slice(0, 4)}MATIC`);
+  console.log(`Balance of account3: ${ethers.utils.formatEther(await account3.getBalance()).slice(0, 4)} MATIC`);
 
   console.log("-------------------------------------------------------------------")
   console.log("Deploying Pricefeed...");
