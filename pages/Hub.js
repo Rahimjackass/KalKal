@@ -99,7 +99,7 @@ export default function CreateGame () {
                     <div className='flex flex-col bg-green-600 border border-transparent w-auto rounded-3xl py-3 mx-3'>
                         <h1 className='text-lg text-left mb-1.5 pl-3'>How to play?</h1>
                         <div className='text-left'>
-                            <p className='text-white text-sm px-3'>to play the game you should either enter an already created game, or create your own one</p>
+                            <p className='text-white text-sm px-3'>- to play the game you should either enter an already created game, or create your own one</p>
                             {/* <p className='text-white text-sm px-3'>- what is ticket price?</p> */}
                         </div>
                     </div>
