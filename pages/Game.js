@@ -218,7 +218,7 @@ export default function Game () {
                         {paused && winners == 0 && 
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 rounded focus:outline-none focus:shadow-outline" onClick={startWrite} hidden={admin != address}>Start</button>
                         }
-                        <h2 className='pr-1'>Game Status:</h2>
+                        <h2 className='text-center pr-1.5'>status:</h2>
                         {!paused ? 
                             <p className="text-green-600">ongoing</p>
                             :
@@ -244,7 +244,7 @@ export default function Game () {
                     </div>
                     :
                     <div>
-                        <Information></Information>
+                        <Information paused={paused} winner={winners}></Information>
                         {!paused && 
                             start && period && currentTimestamp &&
                             <div className="flex justify-center items-center">
@@ -277,12 +277,6 @@ export default function Game () {
                             </div>
                         </div>
                         }
-                        {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 rounded focus:outline-none focus:shadow-outline" onClick={endWrite}>End</button> */}
-                        {/* now {currentTimestamp}
-                        start {start}
-                        period {period} */}
-
-                        {/* remaining {()} */}
                     </div>
                     }
                 </div>     

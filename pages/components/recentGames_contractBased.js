@@ -37,6 +37,10 @@ export default function RecentGames () {
 
                 const babyContract = new ethers.Contract(address, gameAbi, provider);
                 const started = await babyContract.started();
+                let balance = await babyContract.getBalance();
+
+                balance = ethers.utils.formatEther(balance);
+                balance = parseInt(balance);
 
                 const object = {
                     address,
@@ -44,7 +48,8 @@ export default function RecentGames () {
                     ticket,
                     period,
                     number: i,
-                    started
+                    started,
+                    balance
                 }
 
                 console.log(object);
@@ -74,6 +79,7 @@ export default function RecentGames () {
                 <p className="w-3/12 text-center text-xs">table</p>
                 <p className='w-2/12 text-center text-xs'>ticket</p>
                 <p className='w-3/12 text-center text-xs'>period</p>
+                <p className='w-3/12 text-center text-xs'>prize</p>
             </div>
             {
                 loading ? 
@@ -83,12 +89,13 @@ export default function RecentGames () {
                 :
                 response.map((x) => (
                     <Link href={`/Game?contract=${x.address}`}>
-                        <div className={`flex items-center py-1 my-1 mx-1 ${x.started ? "bg-neutral-700 text-white border" : "bg-cyan-300 hover:bg-blue-600"} rounded-lg `} key={x.number}>
+                        <div className={`flex items-center py-1 my-1 mx-1 ${x.started ? "bg-neutral-700 text-white border" : "bg-cyan-300 hover:bg-transparent"} rounded-lg `} key={x.number}>
                             <p className='w-1/12 text-center text-xs'>{x.number}</p>
                             <p className='w-3/12 text-center text-xs'>{x.adminName}</p>
                             <p className='w-3/12 text-center text-xs'>{`${x.address.slice(0, 4)}...${x.address.slice(-4)}`}</p>
-                            <p className='w-2/12 text-center text-xs'>{x.ticket} MATIC</p>
-                            <p className='w-3/12 text-center text-xs'>{x.period} Sec</p>     
+                            <p className='w-2/12 text-center text-xs'>{x.ticket} matic</p>
+                            <p className='w-3/12 text-center text-xs'>{x.period} sec</p>     
+                            <p className='w-3/12 text-center text-xs'>{x.balance > 0 ? `${x.balance} matic` : "-"} </p>     
                         </div>
                     </Link>
                 ))
