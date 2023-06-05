@@ -63,7 +63,7 @@ export default function RecentGames () {
             <div className='flex my-2 text-white'>
                 <p className='w-1/12 text-center text-xs'>#</p>
                 <p className='w-3/12 text-center text-xs'>admin</p>
-                <p className="w-3/12 text-center text-xs">contract address</p>
+                <p className="w-3/12 text-center text-xs">table</p>
                 <p className='w-2/12 text-center text-xs'>ticket</p>
                 <p className='w-3/12 text-center text-xs'>period</p>
             </div>

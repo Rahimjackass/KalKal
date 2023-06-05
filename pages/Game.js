@@ -2,7 +2,7 @@ import 'tailwindcss/tailwind.css';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-import { useState, useEffect, CSSProperties } from "react";
+import { useState } from "react";
 
 import { ethers } from 'ethers';
 
@@ -13,9 +13,10 @@ import GameArtifact from "../artifacts/contracts/Game.sol/Game.json";
 
 import RecentPlayers from './components/recentPlayers';
 import Information from './components/information';
+import CountDown from './components/CountDown';
 
 import PacmanLoader from "react-spinners/ClipLoader";
-// import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+// import  from 'react-countdown';
 
 
 export default function Game () {
@@ -40,7 +41,7 @@ export default function Game () {
     const [ period, setPeriod] = useState(null)
 
     const [ winners, setWinners ] = useState(null)
-
+    
     useContractRead({
         address: contract,
         abi: GameArtifact.abi,
@@ -209,7 +210,6 @@ export default function Game () {
         }
     })
     return (
-
         <div className="h-full bg-gradient-to-b from-rose-600 to-violet-500">
             <header className="bg-gray-800 text-white p-4">
                 <div className="flex justify-between items-center">
@@ -231,6 +231,9 @@ export default function Game () {
                     <ConnectButton></ConnectButton>
                 </div>
             </header>
+            {startLoading || startSuccess ? 
+            <p>Starting the game...</p>
+            :
             <div className="flex">
                 <div className="w-3/6 h-screen rounded-md">
                     {isLoading || isSuccess ? 
@@ -241,17 +244,10 @@ export default function Game () {
                     <div>
                         <Information></Information>
                         {!paused && 
-                        <div className="flex justify-center items-center py-4 my-1">
-                            {/* <CountdownCircleTimer
-                                isPlaying={!paused}
-                                duration={period}
-                                // initialRemainingTime={(start+period)-currentTimestamp}
-                                colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-                                // initialRemainingTime={period}
-                            >
-                                {({ remainingTime }) => remainingTime}
-                            </CountdownCircleTimer> */}
-                        </div>
+                            start && period && currentTimestamp &&
+                            <div className="flex justify-center items-center">
+                                <CountDown seconds={(start+period)-currentTimestamp}/>
+                            </div>
                         }
 
                         {paused && winners < 1 &&
@@ -284,7 +280,7 @@ export default function Game () {
                         start {start}
                         period {period} */}
 
-                        {/* remaining {(start+period)-currentTimestamp} */}
+                        {/* remaining {()} */}
                     </div>
                     }
                 </div>     
@@ -292,7 +288,7 @@ export default function Game () {
                     <RecentPlayers contract={contract}></RecentPlayers>
                 </div>          
             </div>
-        </div>
-  
+            }
+        </div>  
     )
 }
