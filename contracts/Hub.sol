@@ -67,6 +67,7 @@ contract Hub is AutomationCompatibleInterface {
         );
 
         games += 1;
+
         counterToAddress[games] = createdGame(
             address(newGame),
             msg.sender,

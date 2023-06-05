@@ -232,7 +232,9 @@ export default function Game () {
                 </div>
             </header>
             {startLoading || startSuccess ? 
-            <p>Starting the game...</p>
+            <div className="flex justify-center items-center h-screen">
+                <PacmanLoader color="#000000" size={100}/>
+            </div>
             :
             <div className="flex">
                 <div className="w-3/6 h-screen rounded-md">

@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react';
 import { HUB_ADDRESS } from '../../config';
+
 import Hub  from "../../artifacts/contracts/Hub.sol/Hub.json";
+import GameArtifact from "../../artifacts/contracts/Game.sol/Game.json";
+
 import Link from 'next/link';
 import PacmanLoader from "react-spinners/ClipLoader";
+
 
 const { ethers } = require('ethers');
 
@@ -13,7 +17,7 @@ export default function RecentGames () {
     const provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com');
 
     const contractAbi = Hub.abi;
-
+    const gameAbi = GameArtifact.abi;
 
     const getEvent = async () => {
         setLoading(true)
@@ -31,12 +35,16 @@ export default function RecentGames () {
                 const ticket = response[3].toNumber()
                 const period = response[4].toNumber()
 
+                const babyContract = new ethers.Contract(address, gameAbi, provider);
+                const started = await babyContract.started();
+
                 const object = {
                     address,
                     adminName,
                     ticket,
                     period,
                     number: i,
+                    started
                 }
 
                 console.log(object);
@@ -75,7 +83,7 @@ export default function RecentGames () {
                 :
                 response.map((x) => (
                     <Link href={`/Game?contract=${x.address}`}>
-                        <div className='flex items-center py-1 my-1 mx-1 bg-white border rounded-lg hover:bg-blue-300' key={x.number}>
+                        <div className={`flex items-center py-1 my-1 mx-1 ${x.started ? "bg-neutral-700 text-white border" : "bg-cyan-300 hover:bg-blue-600"} rounded-lg `} key={x.number}>
                             <p className='w-1/12 text-center text-xs'>{x.number}</p>
                             <p className='w-3/12 text-center text-xs'>{x.adminName}</p>
                             <p className='w-3/12 text-center text-xs'>{`${x.address.slice(0, 4)}...${x.address.slice(-4)}`}</p>

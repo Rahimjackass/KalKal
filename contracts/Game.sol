@@ -3,6 +3,7 @@ pragma solidity ^0.8.7;
 
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceFeed.sol";
+import "./Hub.sol";
 
 //0-btc
 //1-eth
@@ -13,11 +14,14 @@ import "./PriceFeed.sol";
 
 contract Game {
     PriceFeed internal priceFeed;
+    Hub public hub;
 
     address public adminAddress;
     string public adminName;
+
     // uint public players;
 
+    uint public index;
     uint public ticketPrice;
 
     uint public counter;
@@ -26,6 +30,7 @@ contract Game {
     uint public start;
 
     bool public paused = true;
+    bool public started;
 
     uint public winners = 0;
     uint public winnerChoice;
@@ -109,6 +114,7 @@ contract Game {
         }
         start = block.timestamp;
         paused = false;
+        started = true;
     }
 
     function choiceToPrice(uint _option) public view returns (int) {

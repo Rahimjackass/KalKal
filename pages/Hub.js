@@ -2,7 +2,7 @@ import 'tailwindcss/tailwind.css';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { ethers } from "ethers";
-import { usePrepareContractWrite, useContractWrite, useWaitForTransaction, useContractEvent } from 'wagmi';
+import { usePrepareContractWrite, useContractWrite, useContractEvent } from 'wagmi';
 import Link from 'next/link';
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';

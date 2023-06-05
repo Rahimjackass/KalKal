@@ -107,7 +107,7 @@ export default function RecentPlayers() {
             // console.log(open)
             const close = response[3].toNumber()/100000000;
             // console.log(close)
-            const range = response[4].toNumber()
+            const range = response[4].toString()
             // console.log(range)
             const winner = response[5];
 
