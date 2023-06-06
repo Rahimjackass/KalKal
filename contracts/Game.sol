@@ -102,6 +102,10 @@ contract Game {
             msg.sender == adminAddress,
             "msg.sender is not admin! only admin can start the game"
         );
+        require(
+            counter > 1,
+            "There should be more than one registered players to start"
+        );
         uint choice;
         for (uint i = 1; i < counter + 1; i++) {
             choice = counterToPlayer[i].choice;
