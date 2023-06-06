@@ -216,7 +216,7 @@ export default function Game () {
                     <Link href="./Hub"><h1 className="text-xl font-bold ml-5">KalKal</h1></Link>
                     <div className="flex items-center">
                         {paused && winners == 0 && 
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 rounded focus:outline-none focus:shadow-outline" onClick={startWrite} hidden={admin != address}>Start</button>
+                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-3 rounded focus:outline-none focus:shadow-outline" onClick={startWrite} disabled={!startWrite} hidden={admin != address}>Start</button>
                         }
                         <h2 className='text-center pr-1.5'>status:</h2>
                         {!paused ? 
