@@ -99,13 +99,17 @@ export default function CreateGame () {
                     <div className='flex flex-col bg-green-600 border border-transparent w-auto rounded-3xl py-3 mx-3'>
                         <h1 className='text-lg text-left mb-1.5 pl-3'>How to play?</h1>
                         <div className='text-left'>
-                            <p className='text-white text-sm px-3'>- to play the game you should either enter an already created game, or create your own one</p>
+                            <p className='text-white text-sm px-3'>since we are still on testing phase, you need to get yourself some <b>test token</b> from one of the faucets below</p>
+                            <p className='text-white text-sm px-3'>then to play the game you should either enter an already created game, or create your own one</p>
                             {/* <p className='text-white text-sm px-3'>- what is ticket price?</p> */}
                         </div>
                     </div>
 
                     <div className='flex justify-between px-3 py-3'>
-                        <Link href="https://mumbaifaucet.com/" target="_blank" className='bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-lg px-2 py-1'>test tokens</Link>
+                        <div>
+                            <Link href="https://mumbaifaucet.com/" target="_blank" className='bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-lg px-2 py-1  border border-white mr-2'>Facuet-1</Link>
+                            <Link href="https://faucet.polygon.technology/" target="_blank" className='bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-lg px-2 py-1  border border-white'>Faucet-2</Link>
+                        </div>
                         <ConnectButton chainStatus="icon"></ConnectButton>
                     </div>
 
