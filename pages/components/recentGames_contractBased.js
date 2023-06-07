@@ -79,7 +79,7 @@ export default function RecentGames () {
                 <p className="w-3/12 text-center text-xs">table</p>
                 <p className='w-2/12 text-center text-xs'>ticket</p>
                 <p className='w-3/12 text-center text-xs'>period</p>
-                <p className='w-3/12 text-center text-xs'>prize</p>
+                <p className='w-3/12 text-center text-xs'>balance</p>
             </div>
             {
                 loading ? 
