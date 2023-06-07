@@ -28,14 +28,14 @@ const CountDown = ({seconds}) => {
     if( countdown <= 0) {
       clearInterval(timerId.current)
       location.reload();
-      alert("END! Reload the page to see the winner")
+      // alert("END! Reload the page to see the winner")
     }
   }, [countdown])
 
 
   return (
     <div className='bg-black text-red-600 w-full text-center'>
-      <h1 className='text-8xl'>{formatTime(countdown+120)}</h1>
+      <h1 className='text-8xl'>{formatTime(countdown+20)}</h1>
     </div>
   );
 };
