@@ -18,7 +18,7 @@ const CountDown = ({seconds}) => {
   const timerId = useRef()
 
   useEffect(() => {
-    timerId.current - setInterval(() => {
+    timerId.current = setInterval(() => {
       setCountDown(prev => prev - 1)
     }, 1000)
     return () => clearInterval(timerId.current)
