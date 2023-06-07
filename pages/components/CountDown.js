@@ -27,7 +27,7 @@ const CountDown = ({seconds}) => {
   useEffect(() => {
     if( countdown <= 0) {
       clearInterval(timerId.current)
-      location.reload();
+      window.location.reload();
       // alert("END! Reload the page to see the winner")
     }
   }, [countdown])
